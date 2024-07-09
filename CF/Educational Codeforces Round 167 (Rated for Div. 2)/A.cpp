@@ -24,9 +24,14 @@ int T = 1 ;
 int ans = 0 ;
 int n , m, k ;
 void solve(){
-    cin >> n >> k ;
-    ans =  n * k - (k-1) ;
-    cout << ans << endl ;
+    cin >> n ; 
+    ans  = 1 ;
+    for(int i  = 1 ; i <= n ; ++ i){
+        ans = lcm(ans,i) ;
+    }
+    for(int i = 1 ; i < = n ; ++ i){
+        cout << ans << " " << endl[i == n] ;
+    }
 }
 signed main(){
     IOS ;

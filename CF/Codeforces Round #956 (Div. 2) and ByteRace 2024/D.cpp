@@ -22,30 +22,13 @@ int qmi(int a, int b){
 }
 int T = 1 ;
 int ans = 0 ;
+int n , m, k ;
 void solve(){
-    int x, y ,k ;
-    cin >> x >> y >> k ;
-    while(k){
-        int num = y - x % y ;//倍数还需要的数
-        if(num == y) num = 1 ;
-        if(num <= k){
-            x += num ;
-            while(x%y == 0) x /= y ;
-            k -= num ; 
-            if(x == 1){
-                x += k  % (y-1) ;
-                break ;
-            }
-        }else{
-            x += k ;
-            k = 0 ;
-        }
-    }
-    cout << x << endl ;
+
 }
 signed main(){
     IOS ;
-    cin >> T ;
+    // cin >> T ;
     while(T --){
         solve() ;
     }

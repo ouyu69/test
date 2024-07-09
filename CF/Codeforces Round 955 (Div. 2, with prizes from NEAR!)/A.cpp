@@ -23,11 +23,21 @@ int T = 1 ;
 int ans = 0 ;
 int n , m, k ;
 void solve(){
-
+    int x1, y1 ;
+    int x2, y2 ;
+    cin >> x1 >> y1 ;
+    cin >> x2 >> y2 ;
+    int n1 = x1 - y1 ;
+    int n2 = x2 - y2 ;
+    if(n1 * n2 >= 0 ){
+        cout << "YES" << endl ;
+    }else{
+        cout << "NO" << endl ;
+    }
 }
 signed main(){
     IOS ;
-    // cin >> T ;
+    cin >> T ;
     while(T --){
         solve() ;
     }
