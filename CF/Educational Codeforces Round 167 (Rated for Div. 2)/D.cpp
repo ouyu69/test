@@ -25,42 +25,44 @@ int ans = 0 ;
 int n , m, k ;
 int a[N] ;
 int b[N] ; 
-int dp[N][N] ;//第i个位置，能量为j
+void mergr(int l, int r, int p){//二分递归
+    if(l == r){
+        return 1;
+    }
+    int mid = l + r + 1 >> 2 ;
+    int res1 = 0 , res2 = 0 ;//表示两边的数的数量
+    if((r - l + 1)&1){
+        if(a[mid] != b[mid]){
+            return  ; 
+        }        
+        merge(l, mid-1) ;
+        merge(mid+1, r) ;
+    }else{
+        merge(l, mid) ;
+        merge(mid+1, r) ;     
+    }
+
+}
 void solve(){
     cin >> n ;
-    for(int i = 0 ; i < n+2 ; ++ i){
-        for(int j = 0 ; j < n+2 ; ++ j){
-            dp[i][j] = INF ;
-        }
-        b[i] = 0 ;
-    }
-    map<int,int> mp ;
-    for(int i = 1; i <= n ; ++ i){
+    map<int,int> mp1 ;
+    map<int,int> mp2 ;
+    for(iut i = 1 ; i <= n ; ++ i){
         cin >> a[i] ;
-        mp[a[i]] ++ ;
+        mp1[a[i]] ++ ;
     }
-    int cnt = 0 ;
-    dp[0][0] = 0 ;
-    for(auto e : mp){
-        b[++cnt] = e.second ;
-        dp[cnt][0] = 0 ;
+    for(int i = 1 ; i <= n ; ++ i){
+        cin >> b[i] ;
+        mp2[a[i]] ++ ;
     }
-    for(int i = 1; i <= cnt ; ++ i){
-        for(int j = 0 ; j < i ; ++ j){
-            dp[i][j] = INF ;
-            dp[i][j] = min(dp[i-1][j], dp[i][j]) ;
-            if(i - j >= dp[i-1][j-1] + b[i]){
-                dp[i][j] = min(dp[i-1][j-1] + b[i], dp[i][j]) ;
-            }
-        }        
+    for(auto e:mp1){
+        if(e.second ! mp2[e]){
+            cout << "NO" << endl ;
+            return ;
+        }
     }
-    ans = INF ;
-    for(int i = 0 ; i <= cnt ; ++ i){
-        if(dp[cnt][i] != INF) ans = min(ans,cnt-i) ;
-        // cout << dp[cnt][i] ;
-    }
-    cout << ans << endl ;
     
+
    
 }
 signed main(){
